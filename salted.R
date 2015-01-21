@@ -22,85 +22,86 @@ calculateStats <- function(counterBoule, tirage ,boule_1 ,annee_numero_de_tirage
 }
 
 calculateAllStats <- function( selectBoule ,nbBoule ,nbCol,tirageDate,tirageOth){
-counterBoule<-data.frame(matrix(NA, nrow = nbBoule, ncol = 0))
-counterBoule[,"value"]=0
-counterBoule[,"date"]=NA
-counterBoule[,"counterTotal"]=0
-counterBoule[,"counterTotal50"]=0
-counterBoule[,"counterTotal100"]=0
-counterBoule[,"counterTotal150"]=0
-counterBoule[,"counterTotal200"]=0
-counterBoule[,"counterTotal250"]=0
-for ( tirage in 1: nrow(selectBoule) ){
-	for ( coln in 1: nbCol )
-	{
-		counterBoule =calculateStats(counterBoule, tirage ,selectBoule[tirage, coln+1],selectBoule[tirage,]$annee_numero_de_tirage)
+	counterBoule<-data.frame(matrix(NA, nrow = nbBoule, ncol = 0))
+	counterBoule[,"value"]=0
+	counterBoule[,"date"]=NA
+	counterBoule[,"counterTotal"]=0
+	counterBoule[,"counterTotal50"]=0
+	counterBoule[,"counterTotal100"]=0
+	counterBoule[,"counterTotal150"]=0
+	counterBoule[,"counterTotal200"]=0
+	counterBoule[,"counterTotal250"]=0
+	for ( tirage in 1: nrow(selectBoule) ){
+		for ( coln in 1: nbCol )
+		{
+			counterBoule =calculateStats(counterBoule, tirage ,selectBoule[tirage, coln+1],selectBoule[tirage,]$annee_numero_de_tirage)
+		}
+
 	}
-	
-}
 
-index <- with(counterBoule,order(date,decreasing=FALSE))
-counterBouledate <-counterBoule[index,]
-index <- with(counterBoule,order(counterTotal,decreasing=FALSE))
-counterBouleTotal <-counterBoule[index,]
-index <- with(counterBoule,order(counterTotal50,decreasing=FALSE))
-counterBouleTotal50 <-counterBoule[index,]
-index <- with(counterBoule,order(counterTotal100,decreasing=FALSE))
-counterBouleTotal100 <-counterBoule[index,]
-index <- with(counterBoule,order(counterTotal150,decreasing=FALSE))
-counterBouleTotal150 <-counterBoule[index,]
+	index <- with(counterBoule,order(date,decreasing=FALSE))
+	counterBouledate <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal,decreasing=FALSE))
+	counterBouleTotal <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal50,decreasing=FALSE))
+	counterBouleTotal50 <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal100,decreasing=FALSE))
+	counterBouleTotal100 <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal150,decreasing=FALSE))
+	counterBouleTotal150 <-counterBoule[index,]
 
-index <- with(counterBoule,order(counterTotal200,decreasing=FALSE))
-counterBouleTotal200 <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal200,decreasing=FALSE))
+	counterBouleTotal200 <-counterBoule[index,]
 
-index <- with(counterBoule,order(counterTotal250,decreasing=FALSE))
-counterBouleTotal250 <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal250,decreasing=FALSE))
+	counterBouleTotal250 <-counterBoule[index,]
 
 
-index <- with(counterBoule,order(counterTotal,decreasing=TRUE))
-counterBouleTotalM <-counterBoule[index,]
-index <- with(counterBoule,order(counterTotal50,decreasing= TRUE))
-counterBouleTotal50M <-counterBoule[index,]
-index <- with(counterBoule,order(counterTotal100,decreasing= TRUE))
-counterBouleTotal100M <-counterBoule[index,]
-index <- with(counterBoule,order(counterTotal150,decreasing= TRUE))
-counterBouleTotal150M <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal,decreasing=TRUE))
+	counterBouleTotalM <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal50,decreasing= TRUE))
+	counterBouleTotal50M <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal100,decreasing= TRUE))
+	counterBouleTotal100M <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal150,decreasing= TRUE))
+	counterBouleTotal150M <-counterBoule[index,]
 
-index <- with(counterBoule,order(counterTotal200,decreasing= TRUE))
-counterBouleTotal200M <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal200,decreasing= TRUE))
+	counterBouleTotal200M <-counterBoule[index,]
 
-index <- with(counterBoule,order(counterTotal250,decreasing= TRUE))
-counterBouleTotal250M <-counterBoule[index,]
+	index <- with(counterBoule,order(counterTotal250,decreasing= TRUE))
+	counterBouleTotal250M <-counterBoule[index,]
 
-counterBouledate[1: tirageDate,"value"]
-counterBouleTotal[1: tirageOth,"value"]
-counterBouleTotal50[1: tirageOth,"value"]
-counterBouleTotal100[1: tirageOth,"value"]
-counterBouleTotal150[1: tirageOth,"value"]
-counterBouleTotal200[1: tirageOth,"value"]
-counterBouleTotal250[1: tirageOth,"value"]
-counterBouleTotalM[1: tirageOth,"value"]
-counterBouleTotal50M[1: tirageOth,"value"]
-counterBouleTotal100M[1: tirageOth,"value"]
-counterBouleTotal150M[1: tirageOth,"value"]
-counterBouleTotal200M[1: tirageOth,"value"]
-counterBouleTotal250M[1: tirageOth,"value"]
-regroup<-list(intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal50[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal100[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal150[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal200[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotalM[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal50M[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal100M[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal150M[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal200M[1: tirageOth,"value"]),
-intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal250M[1: tirageOth,"value"]))
-lastList<-unlist(regroup)
-return (lastList[!duplicated(lastList)])
+	counterBouledate[1: tirageDate,"value"]
+	counterBouleTotal[1: tirageOth,"value"]
+	counterBouleTotal50[1: tirageOth,"value"]
+	counterBouleTotal100[1: tirageOth,"value"]
+	counterBouleTotal150[1: tirageOth,"value"]
+	counterBouleTotal200[1: tirageOth,"value"]
+	counterBouleTotal250[1: tirageOth,"value"]
+	counterBouleTotalM[1: tirageOth,"value"]
+	counterBouleTotal50M[1: tirageOth,"value"]
+	counterBouleTotal100M[1: tirageOth,"value"]
+	counterBouleTotal150M[1: tirageOth,"value"]
+	counterBouleTotal200M[1: tirageOth,"value"]
+	counterBouleTotal250M[1: tirageOth,"value"]
+	regroup<-list(intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal50[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal100[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal150[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal200[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotalM[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal50M[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal100M[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal150M[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal200M[1: tirageOth,"value"]),
+	intersect(counterBouledate[1: tirageDate,"value"], counterBouleTotal250M[1: tirageOth,"value"]))
+	lastList<-unlist(regroup)
+	return (lastList[!duplicated(lastList)])
 
 
 }
+
 
 #Euromillion
 download.file("https://media.fdj.fr/generated/game/euromillions/euromillions_3.zip",method="curl",destfile="tempo.zip")
@@ -179,6 +180,15 @@ print(paste("euromillion:", euromillion))
 print(paste("loto:",loto))
 print(paste("superLoto:", superLoto))
 print(paste("keno:", keno))
+
+dump(euromillion, file = "euromillion.last",
+      append = FALSE)
+dump(loto, file = "loto.last",
+            append = FALSE)
+dump( superLoto, file = "superLoto.last",
+            append = FALSE)
+dump(keno, file = "keno.last",
+            append = FALSE)
 
 
 
