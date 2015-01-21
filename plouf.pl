@@ -9,6 +9,10 @@
 `wget --secure-protocol=SSLv3 https://media.fdj.fr/generated/game/keno/keno.zip`;
 `wget --secure-protocol=SSLv3 https://media.fdj.fr/generated/game/keno/keno_gagnant_a_vie.zip`;
 
+`wget http://www.playusalotteries.com/en/winnings/download/lottery/5.html`;
+
+`mv 5.html usa_lottery.csv`;
+
 `unzip euromillions_3.zip`;
 `unzip euromillions_2.zip`;
 `unzip euromillions.zip`;
