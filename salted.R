@@ -1,5 +1,6 @@
 
 
+
 calculateStats <- function(counterBoule, tirage ,boule_1 ,annee_numero_de_tirage ){
 		counterBoule[boule_1,]$value= boule_1
 		if (is.null(counterBoule[boule_1,]$date)||is.na(counterBoule[boule_1,]$date) ) {
