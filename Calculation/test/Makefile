@@ -79,14 +79,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles /home/misys/personal/Calculation/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles /home/misys/personal/Calculation/test/CMakeFiles/progress.marks
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 test/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 test/clean
 .PHONY : clean
 
 # The main clean target
@@ -95,44 +95,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named eureumillion
+# Convenience name for target.
+test/CMakeFiles/test_mill.dir/rule:
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/test_mill.dir/rule
+.PHONY : test/CMakeFiles/test_mill.dir/rule
 
-# Build rule for target.
-eureumillion: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 eureumillion
-.PHONY : eureumillion
-
-# fast build rule for target.
-eureumillion/fast:
-	$(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/build
-.PHONY : eureumillion/fast
-
-#=============================================================================
-# Target rules for targets named test_mill
-
-# Build rule for target.
-test_mill: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_mill
+# Convenience name for target.
+test_mill: test/CMakeFiles/test_mill.dir/rule
 .PHONY : test_mill
 
 # fast build rule for target.
 test_mill/fast:
-	$(MAKE) -f test/CMakeFiles/test_mill.dir/build.make test/CMakeFiles/test_mill.dir/build
+	cd /home/misys/personal/Calculation && $(MAKE) -f test/CMakeFiles/test_mill.dir/build.make test/CMakeFiles/test_mill.dir/build
 .PHONY : test_mill/fast
+
+test1.o: test1.cpp.o
+.PHONY : test1.o
+
+# target to build an object file
+test1.cpp.o:
+	cd /home/misys/personal/Calculation && $(MAKE) -f test/CMakeFiles/test_mill.dir/build.make test/CMakeFiles/test_mill.dir/test1.cpp.o
+.PHONY : test1.cpp.o
+
+test1.i: test1.cpp.i
+.PHONY : test1.i
+
+# target to preprocess a source file
+test1.cpp.i:
+	cd /home/misys/personal/Calculation && $(MAKE) -f test/CMakeFiles/test_mill.dir/build.make test/CMakeFiles/test_mill.dir/test1.cpp.i
+.PHONY : test1.cpp.i
+
+test1.s: test1.cpp.s
+.PHONY : test1.s
+
+# target to generate assembly for a file
+test1.cpp.s:
+	cd /home/misys/personal/Calculation && $(MAKE) -f test/CMakeFiles/test_mill.dir/build.make test/CMakeFiles/test_mill.dir/test1.cpp.s
+.PHONY : test1.cpp.s
 
 # Help Target
 help:
@@ -143,8 +155,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... eureumillion"
 	@echo "... test_mill"
+	@echo "... test1.o"
+	@echo "... test1.i"
+	@echo "... test1.s"
 .PHONY : help
 
 
@@ -156,6 +170,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

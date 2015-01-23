@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 2.6)
-project(calculation)
-
-add_executable(calculation main.cpp abstractstrategy.cpp)
-
-install(TARGETS calculation RUNTIME DESTINATION bin)
+cmake_minimum_required(VERSION 2.8)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
+project(eureumillion)
+enable_testing()
+add_subdirectory(src)
+add_subdirectory(test)

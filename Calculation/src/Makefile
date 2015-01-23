@@ -79,14 +79,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles /home/misys/personal/Calculation/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles /home/misys/personal/Calculation/src/CMakeFiles/progress.marks
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -95,44 +95,80 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named eureumillion
+# Convenience name for target.
+src/CMakeFiles/eureumillion.dir/rule:
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/eureumillion.dir/rule
+.PHONY : src/CMakeFiles/eureumillion.dir/rule
 
-# Build rule for target.
-eureumillion: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 eureumillion
+# Convenience name for target.
+eureumillion: src/CMakeFiles/eureumillion.dir/rule
 .PHONY : eureumillion
 
 # fast build rule for target.
 eureumillion/fast:
-	$(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/build
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/build
 .PHONY : eureumillion/fast
 
-#=============================================================================
-# Target rules for targets named test_mill
+abstractstrategy.o: abstractstrategy.cpp.o
+.PHONY : abstractstrategy.o
 
-# Build rule for target.
-test_mill: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_mill
-.PHONY : test_mill
+# target to build an object file
+abstractstrategy.cpp.o:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.o
+.PHONY : abstractstrategy.cpp.o
 
-# fast build rule for target.
-test_mill/fast:
-	$(MAKE) -f test/CMakeFiles/test_mill.dir/build.make test/CMakeFiles/test_mill.dir/build
-.PHONY : test_mill/fast
+abstractstrategy.i: abstractstrategy.cpp.i
+.PHONY : abstractstrategy.i
+
+# target to preprocess a source file
+abstractstrategy.cpp.i:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.i
+.PHONY : abstractstrategy.cpp.i
+
+abstractstrategy.s: abstractstrategy.cpp.s
+.PHONY : abstractstrategy.s
+
+# target to generate assembly for a file
+abstractstrategy.cpp.s:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.s
+.PHONY : abstractstrategy.cpp.s
+
+core.o: core.cpp.o
+.PHONY : core.o
+
+# target to build an object file
+core.cpp.o:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.o
+.PHONY : core.cpp.o
+
+core.i: core.cpp.i
+.PHONY : core.i
+
+# target to preprocess a source file
+core.cpp.i:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.i
+.PHONY : core.cpp.i
+
+core.s: core.cpp.s
+.PHONY : core.s
+
+# target to generate assembly for a file
+core.cpp.s:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.s
+.PHONY : core.cpp.s
 
 # Help Target
 help:
@@ -141,10 +177,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... eureumillion"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... eureumillion"
-	@echo "... test_mill"
+	@echo "... abstractstrategy.o"
+	@echo "... abstractstrategy.i"
+	@echo "... abstractstrategy.s"
+	@echo "... core.o"
+	@echo "... core.i"
+	@echo "... core.s"
 .PHONY : help
 
 
@@ -156,6 +197,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

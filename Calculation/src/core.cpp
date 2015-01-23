@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Sebastien DIAZ sebastien.disaz@gmail.com
+ * Copyright 2015 misys <email>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,18 @@
  *
  */
 
-#ifndef ABSTRACTSTRATEGY_H
-#define ABSTRACTSTRATEGY_H
-#include <set>
-#include <string>
+#include "core.h"
+void core::calculate(){
 
-class AbstractStrategy
-{
-   virtual std::set<std::string> getValues(int nb)=0;
-   virtual void read(int line, int column,std::string value)=0;
-};
+  int numero=47;
+  int column=2;
+  int line=5;
+  
+  for (std::list<AbstractStrategy*>::iterator it=list.begin(); it != list.end(); ++it){
+      (*it)->read(line,column,numero);
+  }
+  
+  
+    
 
-#endif // ABSTRACTSTRATEGY_H
+}
