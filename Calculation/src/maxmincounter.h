@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Sebastien DIAZ sebastien.disaz@gmail.com
+ * Copyright 2015 seb <email>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,20 @@
  *
  */
 
-#ifndef ABSTRACTSTRATEGY_H
-#define ABSTRACTSTRATEGY_H
-#include <set>
-#include <string>
+#ifndef MAXMINCOUNTER_H
+#define MAXMINCOUNTER_H
+#include<abstractstrategy.h>
+#include<vector>
 
-class AbstractStrategy
+class MaxMinCounter : public AbstractStrategy 
 {
+    std::vector<int> nbNumbers;
+    std::vector<int*> counters;
 public:
-   virtual std::set<std::string> getValues(int nb)=0;
-   virtual void read(int list,int line, int column,int value)=0;
-   virtual void calculate()=0;
+    MaxMinCounter(std::vector<int> nbNumbers);
+    virtual std::set<std::string> getValues(int nb);
+    virtual void read(int list,int line, int column,int value);
+    virtual void calculate();
 };
 
-#endif // ABSTRACTSTRATEGY_H
+#endif // MAXMINCOUNTER_H

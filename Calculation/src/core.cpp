@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 misys <email>
+ * Copyright 2015 seb <email>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,13 @@
 #include "core.h"
 void core::calculate(){
 
+  int section=0;
   int numero=47;
   int column=2;
   int line=5;
   
   for (std::list<AbstractStrategy*>::iterator it=list.begin(); it != list.end(); ++it){
-      (*it)->read(line,column,numero);
+      (*it)->read(section,line,column,numero);
   }
   
   

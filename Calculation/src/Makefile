@@ -170,6 +170,30 @@ core.cpp.s:
 	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.s
 .PHONY : core.cpp.s
 
+maxmincounter.o: maxmincounter.cpp.o
+.PHONY : maxmincounter.o
+
+# target to build an object file
+maxmincounter.cpp.o:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.o
+.PHONY : maxmincounter.cpp.o
+
+maxmincounter.i: maxmincounter.cpp.i
+.PHONY : maxmincounter.i
+
+# target to preprocess a source file
+maxmincounter.cpp.i:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.i
+.PHONY : maxmincounter.cpp.i
+
+maxmincounter.s: maxmincounter.cpp.s
+.PHONY : maxmincounter.s
+
+# target to generate assembly for a file
+maxmincounter.cpp.s:
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.s
+.PHONY : maxmincounter.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,6 +210,9 @@ help:
 	@echo "... core.o"
 	@echo "... core.i"
 	@echo "... core.s"
+	@echo "... maxmincounter.o"
+	@echo "... maxmincounter.i"
+	@echo "... maxmincounter.s"
 .PHONY : help
 
 
