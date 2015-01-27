@@ -18,17 +18,24 @@
 #ifndef MAXMINCOUNTER_H
 #define MAXMINCOUNTER_H
 #include<abstractstrategy.h>
-#include<vector>
 
 class MaxMinCounter : public AbstractStrategy 
 {
     std::vector<int> nbNumbers;
     std::vector<int*> counters;
+    std::vector<int*> orderedCounters;
+    std::vector< int* > clone(std::vector< int* > at);
+    bool notin(std::vector< int > ret, int target);
+
+
 public:
     MaxMinCounter(std::vector<int> nbNumbers);
-    virtual std::set<std::string> getValues(int nb);
+    ~MaxMinCounter();
+    virtual std::vector<int> getValues(int section,int nb);
     virtual void read(int list,int line, int column,int value);
     virtual void calculate();
+    int getValue(int arg1, int arg2);
+
 };
 
 #endif // MAXMINCOUNTER_H

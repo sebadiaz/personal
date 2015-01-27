@@ -17,13 +17,13 @@
 
 #ifndef ABSTRACTSTRATEGY_H
 #define ABSTRACTSTRATEGY_H
-#include <set>
+#include <vector>
 #include <string>
 
 class AbstractStrategy
 {
 public:
-   virtual std::set<std::string> getValues(int nb)=0;
+   virtual std::vector<int> getValues(int section,int nb)=0;
    virtual void read(int list,int line, int column,int value)=0;
    virtual void calculate()=0;
 };
