@@ -44,7 +44,7 @@ MaxMinCounter::~MaxMinCounter(){
 
 bool MaxMinCounter::notin(std::vector< int > ret, int target){
   for(int i=0;i<ret.size();i++){
-    if(ret.at(i)-1==target)
+    if(ret.at(i)==target)
       return false;
   }
   return true;
@@ -56,8 +56,8 @@ std::vector<int> MaxMinCounter::getValues(int section,int nb){
   {
     int target=orderedCounters.at(section)[i];
     for (int j=0;j<nbNumbers.at(section);j++){
-        std::cout <<"target "<<target<<" "<<counters.at(section)[j]<<" "<<notin(ret,target)<<std::endl;
-	if(counters.at(section)[j]==target&&ret.size()<nb&&notin(ret,target)){
+        //std::cout <<"target "<<target<<" "<<counters.at(section)[j]<<" "<<notin(ret,target)<<std::endl;
+	if(counters.at(section)[j]==target&&ret.size()<nb&&notin(ret,j+1)){
 	  ret.push_back(j+1);
 	}
     }
