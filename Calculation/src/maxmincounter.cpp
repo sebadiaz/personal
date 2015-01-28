@@ -18,27 +18,24 @@
 #include "maxmincounter.h"
 #include<iostream>
 
-MaxMinCounter::MaxMinCounter(std::vector<int> nbNumbers){
+MaxMinCounter::MaxMinCounter(std::vector<int> nbNumbers,bool inverse){
   this->nbNumbers=nbNumbers;
+  this->inverse=inverse;
   int count=0;
   for (std::vector<int>::iterator it=nbNumbers.begin(); it != nbNumbers.end(); ++it){
       int size=*it;
-      int *litou=new int[size];
-      counters.push_back(litou);
+      std::vector<int> litou;
       for(int i=0;i<*it;i++)
       {
-	(counters.at(count))[i]=0;
+	litou.push_back(0);
       }
+      counters.push_back(litou);
+      
   }
 }
 
 MaxMinCounter::~MaxMinCounter(){
-  for (std::vector<int*>::iterator it=counters.begin(); it != counters.end(); ++it){
-    delete (*it);
-  }
-  for (std::vector<int*>::iterator it=orderedCounters.begin(); it != orderedCounters.end(); ++it){
-    delete (*it);
-  }
+  
   
 }
 
@@ -50,46 +47,68 @@ bool MaxMinCounter::notin(std::vector< int > ret, int target){
   return true;
 }
 
+std::vector<int> MaxMinCounter::getScoreValues(int section,int nb){
+  std::vector<int> ret;
+  int from=0;
+  if(orderedCounters.size()>0){
+    for(int i=0;i<nb;i++)
+    {
+      from=i;
+      if(inverse){
+	from=orderedCounters.at(section).size()-i-1;
+	if(from<0){
+	  from=0;
+	}
+      }
+      
+      int target=orderedCounters.at(section)[from];
+      ret.push_back(target);
+    }
+  }
+  return ret;
+}
+
 std::vector<int> MaxMinCounter::getValues(int section,int nb){
   std::vector<int> ret;
-  for(int i=0;i<nb;i++)
-  {
-    int target=orderedCounters.at(section)[i];
-    for (int j=0;j<nbNumbers.at(section);j++){
-        //std::cout <<"target "<<target<<" "<<counters.at(section)[j]<<" "<<notin(ret,target)<<std::endl;
-	if(counters.at(section)[j]==target&&ret.size()<nb&&notin(ret,j+1)){
-	  ret.push_back(j+1);
+  int from=0;
+  if(orderedCounters.size()>0){
+    for(int i=0;i<nb;i++)
+    {
+      from=i;
+      if(inverse){
+	from=orderedCounters.at(section).size()-i-1;
+	if(from<0){
+	  from=0;
 	}
+      }
+      
+      int target=orderedCounters.at(section)[from];
+      for (int j=0;j<nbNumbers.at(section);j++){
+	  //std::cout <<"target "<<target<<" "<<counters.at(section)[j]<<" "<<notin(ret,target)<<std::endl;
+	  if(counters.at(section)[j]==target&&ret.size()<nb&&notin(ret,j+1)){
+	    ret.push_back(j+1);
+	  }
+      }
     }
   }
   return ret;
 }
 
 void MaxMinCounter::read(int section,int line, int column,int value){  
+  if(value <1){
+    value=1;
+  }
   counters.at(section)[value-1]++;
 }
 
-std::vector< int* > MaxMinCounter::clone(std::vector< int* > at){
-  std::vector< int* > toRet;
-  int section=0;
-  for (std::vector<int>::iterator it=nbNumbers.begin(); it != nbNumbers.end(); ++it){
-    int *comple= new int[*it];
-    for(int i=0;i<*it;i++){
-      comple[i]=at.at(section)[i];
-    }
-    section++;
-    toRet.push_back(comple);
-  }
-  return toRet;
-}
-
-void quickSort(int tableau[], int debut, int fin);
+void quickSort(std::vector<int> &tableau, int debut, int fin);
 
 void MaxMinCounter::calculate(){
   int section=0;
-  orderedCounters=clone(counters);
+  //orderedCounters=clone(counters);
+  orderedCounters=counters;
   for (std::vector<int>::iterator it=nbNumbers.begin(); it != nbNumbers.end(); ++it){
-    quickSort(orderedCounters.at(section), 0, (*it)-1);
+    quickSort(orderedCounters.at(section), 0, orderedCounters.at(section).size()-1);
     section++;
   }
 }
@@ -98,14 +117,14 @@ int MaxMinCounter::getValue(int arg1, int arg2){
   return counters.at(arg1)[arg2+1];
 }
 
-void echanger(int tableau[], int a, int b)
+void echanger(std::vector<int> &tableau, int a, int b)
 {
     int temp = tableau[a];
     tableau[a] = tableau[b];
     tableau[b] = temp;
 }
 
-void quickSort(int tableau[], int debut, int fin)
+void quickSort(std::vector<int> &tableau, int debut, int fin)
 {
     int gauche = debut-1;
     int droite = fin+1;
