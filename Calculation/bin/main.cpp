@@ -7,10 +7,47 @@
 #include <string.h>
 int main(int argc, char **argv)
 {
+	std::cout << " start" << argc << std::endl;
   std::vector<int> list;
   list.push_back(60);
   list.push_back(60);
   MaxMinCounter maxii(list);
+
+  FILE * fp;
+  char * line = NULL;
+  size_t len = 0;
+  ssize_t read;
+  int nbline = 0;
+  int startline = 1;
+
+  fp = fopen("euromillions.csv", "r");
+  if (fp == NULL)
+	  exit(EXIT_FAILURE);
+  while ((read = getline(&line, &len, fp)) != -1) {
+	  if (nbline >= startline){
+		  int column = 0;
+		  char * pch;
+		  pch = strtok(line, ",");
+		  while (pch != NULL){
+			  if (column != 0){
+				  int a=atoi(pch);
+				  maxii.read(0, nbline, column, a);
+				  
+			  }
+			  column++;
+			  pch = strtok(NULL, ",");
+		  }
+	  }
+	  printf("Retrieved line of length %zu :\n", read);
+	  printf("%s", line);
+	  nbline++;
+  }
+  std::cout << " a = " << nbline << std::endl;
+
+  fclose(fp);
+  if (line)
+	  free(line);
+  /*exit(EXIT_SUCCESS);
   std::ifstream infile;
   infile.open("euromillions.csv",std::ifstream::in);
   std::string line;
@@ -51,7 +88,7 @@ int main(int argc, char **argv)
     nbline++;
   }
   std::cout << " a = " <<nbline<<std::endl;
-  infile.close();
+  infile.close();*/
   maxii.calculate();
   
   
