@@ -122,6 +122,19 @@ eureumillion/fast:
 .PHONY : eureumillion/fast
 
 #=============================================================================
+# Target rules for targets named calculator
+
+# Build rule for target.
+calculator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 calculator
+.PHONY : calculator
+
+# fast build rule for target.
+calculator/fast:
+	$(MAKE) -f bin/CMakeFiles/calculator.dir/build.make bin/CMakeFiles/calculator.dir/build
+.PHONY : calculator/fast
+
+#=============================================================================
 # Target rules for targets named test_mill
 
 # Build rule for target.
@@ -144,6 +157,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... eureumillion"
+	@echo "... calculator"
 	@echo "... test_mill"
 .PHONY : help
 

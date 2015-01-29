@@ -18,9 +18,11 @@
 #include "maxmincounter.h"
 #include<iostream>
 
-MaxMinCounter::MaxMinCounter(std::vector<int> nbNumbers,bool inverse){
+MaxMinCounter::MaxMinCounter(std::vector<int> nbNumbers,bool inverse,int minline,int maxline){
   this->nbNumbers=nbNumbers;
   this->inverse=inverse;
+  this->minLine=minline;
+  this->maxLine=maxline;
   int count=0;
   for (std::vector<int>::iterator it=nbNumbers.begin(); it != nbNumbers.end(); ++it){
       int size=*it;
@@ -95,6 +97,10 @@ std::vector<int> MaxMinCounter::getValues(int section,int nb){
 }
 
 void MaxMinCounter::read(int section,int line, int column,int value){  
+  if(line<minLine||(line>maxLine&&maxLine!=-1)){
+    std::cout<<"line="<<line<< " limit "<< minLine <<" " <<maxLine<<std::endl;
+    return;
+  }
   if(value <1){
     value=1;
   }

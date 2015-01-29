@@ -21,15 +21,18 @@
 
 class MaxMinCounter : public AbstractStrategy 
 {
+private:
     std::vector<int> nbNumbers;
     std::vector<std::vector<int> > counters;
     std::vector<std::vector<int> > orderedCounters;
     bool inverse;
+    int minLine;
+    int maxLine;
     bool notin(std::vector< int > ret, int target);
 
 
 public:
-    MaxMinCounter(std::vector<int> nbNumbers,bool inverse=false);
+    MaxMinCounter(std::vector<int> nbNumbers,bool inverse=false,int minline=0,int maxline=-1);
     ~MaxMinCounter();
     virtual std::vector<int> getValues(int section,int nb);
     virtual std::vector<int> getScoreValues(int section,int nb);
