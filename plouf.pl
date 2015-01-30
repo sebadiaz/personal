@@ -10,6 +10,18 @@
 `wget --secure-protocol=SSLv3 https://media.fdj.fr/generated/game/keno/keno_gagnant_a_vie.zip`;
 
 `wget http://www.playusalotteries.com/en/winnings/download/lottery/5.html`;
+`wget http://www.powerball.com/powerball/winnums-text.txt`;
+open FILE, "<winnums-text.txt" or die $!;
+open FILEOUT, ">winnums-text.csv" or die $!;
+print FILEOUT $str;
+while (<FILE>) {
+	$str=$_;
+	$str =~ s/  /,/g;
+	$str =~ s/ /,/g;
+	print FILEOUT $str;
+}
+close FILEOUT;
+close fILE;
 
 `mv 5.html usa_lottery.csv`;
 

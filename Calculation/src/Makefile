@@ -30,30 +30,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake.exe
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake.exe -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake.exe
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation
+CMAKE_SOURCE_DIR = /home/misys/personal/Calculation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation
+CMAKE_BINARY_DIR = /home/misys/personal/Calculation
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake.exe -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
+	/usr/bin/cmake -i .
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -63,7 +60,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake.exe -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -73,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest.exe --force-new-ctest-process $(ARGS)
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
 .PHONY : test
 
 # Special rule for the target test
@@ -82,14 +79,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation/CMakeFiles /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation/src/CMakeFiles/progress.marks
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation/CMakeFiles 0
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles /home/misys/personal/Calculation/src/CMakeFiles/progress.marks
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/misys/personal/Calculation/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -98,22 +95,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/eureumillion.dir/rule:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/eureumillion.dir/rule
+	cd /home/misys/personal/Calculation && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/eureumillion.dir/rule
 .PHONY : src/CMakeFiles/eureumillion.dir/rule
 
 # Convenience name for target.
@@ -122,7 +119,7 @@ eureumillion: src/CMakeFiles/eureumillion.dir/rule
 
 # fast build rule for target.
 eureumillion/fast:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/build
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/build
 .PHONY : eureumillion/fast
 
 abstractstrategy.o: abstractstrategy.cpp.o
@@ -130,7 +127,7 @@ abstractstrategy.o: abstractstrategy.cpp.o
 
 # target to build an object file
 abstractstrategy.cpp.o:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.o
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.o
 .PHONY : abstractstrategy.cpp.o
 
 abstractstrategy.i: abstractstrategy.cpp.i
@@ -138,7 +135,7 @@ abstractstrategy.i: abstractstrategy.cpp.i
 
 # target to preprocess a source file
 abstractstrategy.cpp.i:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.i
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.i
 .PHONY : abstractstrategy.cpp.i
 
 abstractstrategy.s: abstractstrategy.cpp.s
@@ -146,7 +143,7 @@ abstractstrategy.s: abstractstrategy.cpp.s
 
 # target to generate assembly for a file
 abstractstrategy.cpp.s:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.s
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/abstractstrategy.cpp.s
 .PHONY : abstractstrategy.cpp.s
 
 core.o: core.cpp.o
@@ -154,7 +151,7 @@ core.o: core.cpp.o
 
 # target to build an object file
 core.cpp.o:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.o
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.o
 .PHONY : core.cpp.o
 
 core.i: core.cpp.i
@@ -162,7 +159,7 @@ core.i: core.cpp.i
 
 # target to preprocess a source file
 core.cpp.i:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.i
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.i
 .PHONY : core.cpp.i
 
 core.s: core.cpp.s
@@ -170,7 +167,7 @@ core.s: core.cpp.s
 
 # target to generate assembly for a file
 core.cpp.s:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.s
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/core.cpp.s
 .PHONY : core.cpp.s
 
 maxmincounter.o: maxmincounter.cpp.o
@@ -178,7 +175,7 @@ maxmincounter.o: maxmincounter.cpp.o
 
 # target to build an object file
 maxmincounter.cpp.o:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.o
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.o
 .PHONY : maxmincounter.cpp.o
 
 maxmincounter.i: maxmincounter.cpp.i
@@ -186,7 +183,7 @@ maxmincounter.i: maxmincounter.cpp.i
 
 # target to preprocess a source file
 maxmincounter.cpp.i:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.i
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.i
 .PHONY : maxmincounter.cpp.i
 
 maxmincounter.s: maxmincounter.cpp.s
@@ -194,7 +191,7 @@ maxmincounter.s: maxmincounter.cpp.s
 
 # target to generate assembly for a file
 maxmincounter.cpp.s:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.s
+	cd /home/misys/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/maxmincounter.cpp.s
 .PHONY : maxmincounter.cpp.s
 
 # Help Target
@@ -227,6 +224,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /cygdrive/c/Users/Sebastien/IdeaProject/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/misys/personal/Calculation && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
