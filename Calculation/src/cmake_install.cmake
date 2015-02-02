@@ -32,3 +32,43 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
   SET(CMAKE_INSTALL_SO_NO_EXE "1")
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
+IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  FOREACH(file
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libeureumillion.so.1.0.0"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libeureumillion.so.3"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libeureumillion.so"
+      )
+    IF(EXISTS "${file}" AND
+       NOT IS_SYMLINK "${file}")
+      FILE(RPATH_CHECK
+           FILE "${file}"
+           RPATH "")
+    ENDIF()
+  ENDFOREACH()
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
+    "/home/misys/personal/Calculation/src/libeureumillion.so.1.0.0"
+    "/home/misys/personal/Calculation/src/libeureumillion.so.3"
+    "/home/misys/personal/Calculation/src/libeureumillion.so"
+    )
+  FOREACH(file
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libeureumillion.so.1.0.0"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libeureumillion.so.3"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libeureumillion.so"
+      )
+    IF(EXISTS "${file}" AND
+       NOT IS_SYMLINK "${file}")
+      IF(CMAKE_INSTALL_DO_STRIP)
+        EXECUTE_PROCESS(COMMAND "/usr/bin/strip" "${file}")
+      ENDIF(CMAKE_INSTALL_DO_STRIP)
+    ENDIF()
+  ENDFOREACH()
+ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+
+IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Devel")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
+    "/home/misys/personal/Calculation/src/abstractstrategy.h"
+    "/home/misys/personal/Calculation/src/core.h"
+    "/home/misys/personal/Calculation/src/maxmincounter.h"
+    )
+ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Devel")
+
