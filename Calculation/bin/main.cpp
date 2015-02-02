@@ -5,13 +5,68 @@
 #include <iostream>
 #include<list>
 #include <string.h>
+#include <unistd.h>
 int main(int argc, char **argv)
 {
-	std::cout << " start" << argc << std::endl;
-  std::vector<int> list;
-  list.push_back(59);
-  list.push_back(42);
-  MaxMinCounter maxii(list,true);
+  int nbLineToFollow = -1;
+  std::vector<int> nbBoules;
+  std::vector<int> nbTirages;
+  char* fichier=NULL;
+  int aflag = 0;
+  int bflag = 0;
+  char *cvalue = NULL;
+  int index;
+  int c;
+  char * pch;  
+  opterr = 0;
+  while ((c = getopt (argc, argv, "l:b:t:f:")) != -1)
+    switch (c)
+      {
+      case 'l':
+        nbLineToFollow = atoi(optarg);
+	std::cout << " nb line :" << nbLineToFollow << std::endl;
+        break;
+      case 'b':
+	pch = strtok (optarg,",");
+	std::cout << " nb boule :" << optarg << " first:"<<pch<< std::endl;
+	while(pch !=NULL){
+	  nbBoules.push_back(atoi(pch));
+	  pch = strtok (NULL,",");
+	}
+        break;
+      case 't':
+  	pch = strtok (optarg,",");
+	std::cout << " nb tirage :" << optarg << " first:"<<pch<< std::endl;
+	while(pch !=NULL){
+	  nbTirages.push_back(atoi(pch));
+	  pch = strtok (NULL,",");
+	}
+        break;
+      case 'f':
+  	fichier=optarg;
+	std::cout << " file :" << fichier << std::endl;
+        break;
+      case '?':
+        if (optopt == 'l' || optopt == 'b' || optopt == 't' || optopt == 'f')
+          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+        else if (isprint (optopt))
+          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+        else
+          fprintf (stderr,
+                   "Unknown option character `\\x%x'.\n",
+                   optopt);
+        return 1;
+      default:
+        abort ();
+      }
+      if(fichier==NULL||nbBoules.size()==0||nbTirages.size()==0){
+	std::cout<<"Need -b (nb boules ex:60,10) -t (nb tirage ex:5,2) -f (nom du fichier) arguments" <<std::endl;
+	exit(0);
+      }
+  
+	std::cout << " start file reading " << argc << std::endl;
+  
+  MaxMinCounter maxii(nbBoules,true);
 
   FILE * fp;
   char * line = NULL;
@@ -20,10 +75,13 @@ int main(int argc, char **argv)
   int nbline = 0;
   int startline = 1;
 
-  fp = fopen("euromillions.csv", "r");
-  if (fp == NULL)
-	  exit(EXIT_FAILURE);
-  while ((read = getline(&line, &len, fp)) != -1) {
+  fp = fopen(fichier, "r");
+  if (fp == NULL){
+    std::cout <<"Error, file:"<<fichier<< " unknown."<<std::endl; 
+    exit(EXIT_FAILURE);
+  }
+  std::cout <<"Read file:"<<fichier<<std::endl; 
+  while ((read = getline(&line, &len, fp)) != -1&&(nbline<nbLineToFollow||nbLineToFollow==-1)) {
 	  if (nbline >= startline){
 		  int column = 0;
 		  char * pch;
@@ -51,54 +109,7 @@ int main(int argc, char **argv)
   }
   std::cout << " a = " << nbline << std::endl;
 
-  
-  
-  /*exit(EXIT_SUCCESS);
-  std::ifstream infile;
-  infile.open("euromillions.csv",std::ifstream::in);
-  std::string line;
-  int nbline=0;
-  int startline=1;
-  char buff[1024];
-  while (infile.getline( buff,1024))
-  {
-    line=buff;
-    if(nbline>=startline){
-      std::istringstream iss(line);
-      std::string token;
-      int column=0;
-      char * pch;
-      pch = strtok (line.c_str(),",");
-      while(pch !=NULL)//std::getline(iss, token, ',')&&column<6) {
-	
-	if (column!=0){
-	  std::string token=*pch;
-	  std::istringstream isstok(token);
-	  int a;
-	  if (!(iss >> a)) { 
-	    break; 
-	  } 
-	  else
-	  {
-	    //std::cout << " a = " <<a<<std::endl;
-	    maxii.read(0,nbline,column,a);
-	  }
-	}
-	column++;
-	pch = strtok (NULL, ",");
-      }	
-    }
-    
-    
-    // process pair (a,b)
-    nbline++;
-  }
-  std::cout << " a = " <<nbline<<std::endl;
-  infile.close();*/
   maxii.calculate();
-  
-  
-  
   
   std::cout <<"PASS : 3 " <<maxii.getValues(0,5).size()<< std::endl;
   std::cout <<"PASS : 3 " <<maxii.getValues(0,5).at(0)<<" " <<maxii.getScoreValues(0,5).at(0)<<std::endl;
