@@ -19,7 +19,7 @@
 #define MAXMINCOUNTER_H
 #include<abstractstrategy.h>
 
-class MaxMinCounter : public AbstractStrategy 
+class MaxMinCounter : public AbstractStrategy
 {
 private:
     std::vector<int> nbNumbers;
@@ -37,6 +37,7 @@ public:
     virtual std::vector<int> getValues(int section,int nb);
     virtual std::vector<int> getScoreValues(int section,int nb);
     virtual void read(int list,int line, int column,int value);
+    virtual std::vector<int> getTirage(int section,int nbNum,int nbTirage);
     virtual void calculate();
     int getValue(int arg1, int arg2);
 

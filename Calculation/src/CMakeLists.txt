@@ -1,5 +1,5 @@
 include_directories(.)
-add_library(eureumillion STATIC SHARED abstractstrategy.cpp core.cpp maxmincounter.cpp)
+add_library(eureumillion STATIC  abstractstrategy.cpp core.cpp maxmincounter.cpp)
 
 
 set_property(TARGET eureumillion PROPERTY VERSION ${EUREU_VERSION})
@@ -13,7 +13,7 @@ install(TARGETS eureumillion EXPORT eureumillionTargets
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin
-  INCLUDES DESTINATION include
+#  INCLUDES DESTINATION include
 )
 install(
   FILES
