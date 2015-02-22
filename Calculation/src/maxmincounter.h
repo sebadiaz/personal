@@ -32,12 +32,14 @@ private:
 
 
 public:
+    std::vector<int> getFullValues(int section);
+
     MaxMinCounter(std::vector<int> nbNumbers,bool inverse=false,int minline=0,int maxline=-1);
     ~MaxMinCounter();
     virtual std::vector<int> getValues(int section,int nb);
     virtual std::vector<int> getScoreValues(int section,int nb);
     virtual void read(int list,int line, int column,int value);
-    virtual std::vector<int> getTirage(int section,int nbNum,int nbTirage);
+    virtual std::vector<int> getTirage(int section,int nbNum,int numTirage,int nbTirage);
     virtual void calculate();
     int getValue(int arg1, int arg2);
 

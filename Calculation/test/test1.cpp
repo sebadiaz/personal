@@ -43,9 +43,18 @@ int main(int argc, char **argv)
   std::cout <<"PASS : 3 " <<max3.getValues(0,5).at(3)<<" " <<max3.getScoreValues(0,5).at(3)<<std::endl;
   std::cout <<"PASS : 3 " <<max3.getValues(0,5).at(4)<<" " <<max3.getScoreValues(0,5).at(4)<<std::endl;
 
-  std::cout <<"PASS : 4 " <<max.getTirage(0,2,5).at(0)<<std::endl;
-  std::cout <<"PASS : 4 " <<max.getTirage(0,2,5).at(1)<<std::endl;
-  std::cout <<"PASS : 4 " <<max.getTirage(0,3,5).at(2)<<std::endl;
+for(int i=0;i<max.getFullValues(0).size();i++){
+  std::cout <<"PASS :  P " <<i<<" "<<max.getFullValues(0).at(i)<<std::endl;
+
+}
+  std::cout <<"PASS : 4 " <<max.getTirage(0,1,0,4).at(0)<<std::endl;
+  std::cout <<"PASS : 4 " <<max.getTirage(0,1,0,4).at(0)<<std::endl;
+  std::cout <<"PASS : 4 " <<max.getTirage(0,2,0,4).at(1)<<std::endl;
+  std::cout <<"PASS : 4 " <<max.getTirage(0,3,0,4).at(2)<<std::endl;
+  std::cout <<"PASS : 4 " <<max.getTirage(0,4,0,5).at(3)<<std::endl;
+
+  std::cout <<"PASS : 4 " <<max.getTirage(0,1,1,1).at(0)<<std::endl;
+  //std::cout <<"PASS : 4 " <<max.getTirage(0,0,2,2).size()<<std::endl;
 
    // std::cout << "Hello, world!" << std::endl;
     std::cout << "PASS : TestCryptoHash::initTestCase()" << std::endl;

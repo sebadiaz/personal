@@ -166,6 +166,30 @@ eureumillion/fast:
 	cd /home/Sebastien/perso/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/build
 .PHONY : eureumillion/fast
 
+Mixer.o: Mixer.cpp.o
+.PHONY : Mixer.o
+
+# target to build an object file
+Mixer.cpp.o:
+	cd /home/Sebastien/perso/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/Mixer.cpp.o
+.PHONY : Mixer.cpp.o
+
+Mixer.i: Mixer.cpp.i
+.PHONY : Mixer.i
+
+# target to preprocess a source file
+Mixer.cpp.i:
+	cd /home/Sebastien/perso/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/Mixer.cpp.i
+.PHONY : Mixer.cpp.i
+
+Mixer.s: Mixer.cpp.s
+.PHONY : Mixer.s
+
+# target to generate assembly for a file
+Mixer.cpp.s:
+	cd /home/Sebastien/perso/personal/Calculation && $(MAKE) -f src/CMakeFiles/eureumillion.dir/build.make src/CMakeFiles/eureumillion.dir/Mixer.cpp.s
+.PHONY : Mixer.cpp.s
+
 abstractstrategy.o: abstractstrategy.cpp.o
 .PHONY : abstractstrategy.o
 
@@ -252,6 +276,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... Mixer.o"
+	@echo "... Mixer.i"
+	@echo "... Mixer.s"
 	@echo "... abstractstrategy.o"
 	@echo "... abstractstrategy.i"
 	@echo "... abstractstrategy.s"

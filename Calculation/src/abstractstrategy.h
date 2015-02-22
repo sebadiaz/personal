@@ -25,7 +25,7 @@ class AbstractStrategy
 public:
    virtual std::vector<int> getValues(int section,int nb)=0;
    virtual std::vector<int> getScoreValues(int section,int nb)=0;
-   virtual std::vector<int> getTirage(int section,int nbNum,int nbTirage)=0;
+   virtual std::vector<int> getTirage(int section,int nbNum,int numTirage,int nbTirage)=0;
    virtual void read(int list,int line, int column,int value)=0;
    virtual void calculate()=0;
 };

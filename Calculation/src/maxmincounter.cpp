@@ -17,6 +17,7 @@
 
 #include "maxmincounter.h"
 #include<iostream>
+#include <algorithm>
 
 MaxMinCounter::MaxMinCounter(std::vector<int> nbNumbers,bool inverse,int minline,int maxline){
   this->nbNumbers=nbNumbers;
@@ -86,8 +87,36 @@ std::vector<int> MaxMinCounter::getValues(int section,int nb){
 
       int target=orderedCounters.at(section)[from];
       for (int j=0;j<nbNumbers.at(section);j++){
-	  //std::cout <<"target "<<target<<" "<<counters.at(section)[j]<<" "<<notin(ret,target)<<std::endl;
+	  std::cout <<"target "<<target<<" "<<counters.at(section)[j]<<" "<<notin(ret,target)<<std::endl;
 	  if(counters.at(section)[j]==target&&ret.size()<nb&&notin(ret,j+1)){
+	    ret.push_back(j+1);
+	  }
+      }
+    }
+  }
+  return ret;
+}
+
+std::vector<int> MaxMinCounter::getFullValues(int section){
+  std::vector<int> ret;
+  int from=0;
+  //std::cout<<counters.at(section).size()<<" "<<orderedCounters.at(section).size()<<std::endl;
+  int sizeE=orderedCounters.at(section).size();
+  if(sizeE>0){
+    for(int i=0;i<sizeE;i++)
+    {
+      from=i;
+      if(inverse){
+	from=sizeE-i-1;
+	if(from<0){
+	  from=0;
+	}
+      }
+
+      int target=orderedCounters.at(section)[from];
+      for (int j=0;j<counters.at(section).size();j++){
+	  //std::cout <<"target "<<target<<" "<<counters.at(section)[j]<<" "<<notin(ret,target)<<" "<<sizeE<<" "<<counters.at(section).size()<<std::endl;
+	  if(counters.at(section)[j]==target&&notin(ret,j+1)){
 	    ret.push_back(j+1);
 	  }
       }
@@ -114,7 +143,8 @@ void MaxMinCounter::calculate(){
   //orderedCounters=clone(counters);
   orderedCounters=counters;
   for (std::vector<int>::iterator it=nbNumbers.begin(); it != nbNumbers.end(); ++it){
-    quickSort(orderedCounters.at(section), 0, orderedCounters.at(section).size()-1);
+    std::sort (orderedCounters.at(section).begin(), orderedCounters.at(section).end());
+    //quickSort(orderedCounters.at(section), 0, orderedCounters.at(section).size()-1);
     section++;
   }
 }
@@ -160,11 +190,14 @@ void quickSort(std::vector<int> &tableau, int debut, int fin)
     quickSort(tableau, droite+1, fin);
 }
 
-std::vector<int> MaxMinCounter::getTirage(int section,int nbNum,int nbTirage){
+std::vector<int> MaxMinCounter::getTirage(int section,int nbNum,int numTirage,int nbTirage){
     std::vector<int> returnNum;
-    std::vector<int> comple=getValues(0,orderedCounters.size());
-    for(int i=0;i<nbNum;i++){
-        returnNum.push_back(comple[nbNum+(nbTirage-1)]);
+    std::vector<int> comple=getFullValues(section);
+    int maxe=(comple.size()>nbNum)?nbNum:comple.size();
+    for(int i=0;i<maxe;i++){
+        int index=i+(nbTirage*numTirage);
+        index=(comple.size()>index)?index:comple.size();
+        returnNum.push_back(comple[index]);
     }
     return returnNum;
 }

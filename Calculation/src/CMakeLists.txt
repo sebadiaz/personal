@@ -1,5 +1,5 @@
 include_directories(.)
-add_library(eureumillion STATIC  abstractstrategy.cpp core.cpp maxmincounter.cpp)
+add_library(eureumillion STATIC  abstractstrategy.cpp core.cpp maxmincounter.cpp Mixer.cpp)
 
 
 set_property(TARGET eureumillion PROPERTY VERSION ${EUREU_VERSION})
