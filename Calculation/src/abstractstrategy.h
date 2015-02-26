@@ -29,15 +29,17 @@ public:
    virtual void read(int list,int line, int column,int value)=0;
    virtual void calculate()=0;
    
-   std::string toString(std::vector<int> list){
+   std::string toString(std::vector<int> list,int tirage=0){
 	   std::stringstream stream;
 	   for(int i=0;i<list.size();i++){
-		   std::vector<int> fr=getTirage(i,list[i],0,list[i]);
-		   for(int j=0;i<fr.size();j++){
-			stream<<j<<",";
+		   int nb=list[i];
+		   std::vector<int> fr=getTirage(i,nb,tirage,nb);
+		   for(int j=0;j<fr.size();j++){
+			stream<<fr[j]<<",";
 		   }
-		   stream<<std::endl;
+		   
 	   }
+	   stream<<std::endl;
 	   std::string ig=stream.str();
 	   return ig;
    }
