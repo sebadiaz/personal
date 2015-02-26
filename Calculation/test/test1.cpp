@@ -66,6 +66,10 @@ std::vector<int> lili;
 	std::cout <<"PASS : 5 " <<mixy.getTirage(0,1,0,1).at(0)<<std::endl;
    // std::cout << "Hello, world!" << std::endl;
     std::cout << "PASS : TestCryptoHash::initTestCase()" << std::endl;
-	
-    return 0;
+	std::cout << "PASS : " << max.toString(list)<<std::endl;
+    std::cout << "PASS : " << max2.toString(list)<<std::endl;
+    std::cout << "PASS : " << max3.toString(list)<<std::endl;
+    std::cout << "PASS : " << mixy.toString(list)<<std::endl;
+    
+	return 0;
 }

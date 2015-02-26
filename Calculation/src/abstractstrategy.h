@@ -19,7 +19,7 @@
 #define ABSTRACTSTRATEGY_H
 #include <vector>
 #include <string>
-
+#include <sstream>
 class AbstractStrategy
 {
 public:
@@ -28,6 +28,19 @@ public:
    virtual std::vector<int> getTirage(int section,int nbNum,int numTirage,int nbTirage)=0;
    virtual void read(int list,int line, int column,int value)=0;
    virtual void calculate()=0;
+   
+   std::string toString(std::vector<int> list){
+	   std::stringstream stream;
+	   for(int i=0;i<list.size();i++){
+		   std::vector<int> fr=getTirage(i,list[i],0,list[i]);
+		   for(int j=0;i<fr.size();j++){
+			stream<<j<<",";
+		   }
+		   stream<<std::endl;
+	   }
+	   std::string ig=stream.str();
+	   return ig;
+   }
 };
 
 #endif // ABSTRACTSTRATEGY_H
