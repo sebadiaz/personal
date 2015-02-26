@@ -111,22 +111,8 @@ int main(int argc, char **argv)
 
   maxii.calculate();
   
-  std::cout <<"PASS : 3 " <<maxii.getValues(0,5).size()<< std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(0,5).at(0)<<" " <<maxii.getScoreValues(0,5).at(0)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(0,5).at(1)<<" " <<maxii.getScoreValues(0,5).at(1)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(0,5).at(2)<<" " <<maxii.getScoreValues(0,5).at(2)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(0,5).at(3)<<" " <<maxii.getScoreValues(0,5).at(3)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(0,5).at(4)<<" " <<maxii.getScoreValues(0,5).at(4)<<std::endl;
+  std::cout <<maxii.toString(nbTirages)<< std::endl;
   
-  std::cout <<"PASS : 3 " <<maxii.getValues(1,5).size()<< std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(1,5).at(0)<<" " <<maxii.getScoreValues(1,5).at(0)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(1,5).at(1)<<" " <<maxii.getScoreValues(1,5).at(1)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(1,5).at(2)<<" " <<maxii.getScoreValues(1,5).at(2)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(1,5).at(3)<<" " <<maxii.getScoreValues(1,5).at(3)<<std::endl;
-  std::cout <<"PASS : 3 " <<maxii.getValues(1,5).at(4)<<" " <<maxii.getScoreValues(1,5).at(4)<<std::endl;
-  
-   // std::cout << "Hello, world!" << std::endl;
-    std::cout << "PASS : TestCryptoHash::initTestCase()" << std::endl;
     fclose(fp);
     if (line)
 	  free(line);
