@@ -1,6 +1,8 @@
 #include <iostream>
 #include <maxmincounter.h>
 #include <stdlib.h>
+#include<vector>
+#include<Mixer.h>
 int main(int argc, char **argv)
 {
   std::vector<int> list;
@@ -55,8 +57,15 @@ for(int i=0;i<max.getFullValues(0).size();i++){
 
   std::cout <<"PASS : 4 " <<max.getTirage(0,1,1,1).at(0)<<std::endl;
   //std::cout <<"PASS : 4 " <<max.getTirage(0,0,2,2).size()<<std::endl;
-
+std::vector<int> lili;
+	lili.push_back(1);
+	lili.push_back(1);
+	
+	Mixer mixy(&max,&max3,lili);
+	std::cout <<"PASS : 5 "<<std::endl;
+	std::cout <<"PASS : 5 " <<mixy.getTirage(0,1,0,1).at(0)<<std::endl;
    // std::cout << "Hello, world!" << std::endl;
     std::cout << "PASS : TestCryptoHash::initTestCase()" << std::endl;
+	
     return 0;
 }
