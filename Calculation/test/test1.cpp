@@ -8,9 +8,9 @@ int main(int argc, char **argv)
   std::vector<int> list;
   list.push_back(5);
   list.push_back(5);
-  MaxMinCounter max(list);
-  MaxMinCounter max2(list,true);
-  MaxMinCounter max3(list,true,0,2);
+  MaxMinCounter max("",list);
+  MaxMinCounter max2("",list,true);
+  MaxMinCounter max3("",list,true,0,2);
   for(int i=0;i<100;i++){
     max.read(0,0,0,(rand()%5)+1);
     max.read(1,0,0,(rand()%5)+1);

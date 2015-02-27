@@ -19,11 +19,12 @@
 #include<iostream>
 #include <algorithm>
 
-MaxMinCounter::MaxMinCounter(std::vector<int> nbNumbers,bool inverse,int minline,int maxline){
+MaxMinCounter::MaxMinCounter(std::string nameP,std::vector<int> nbNumbers,bool inverse,int minline,int maxline){
   this->nbNumbers=nbNumbers;
   this->inverse=inverse;
   this->minLine=minline;
   this->maxLine=maxline;
+  this->name=nameP;
   int count=0;
   for (std::vector<int>::iterator it=nbNumbers.begin(); it != nbNumbers.end(); ++it){
       int size=*it;
@@ -200,5 +201,9 @@ std::vector<int> MaxMinCounter::getTirage(int section,int nbNum,int numTirage,in
         returnNum.push_back(comple[index]);
     }
     return returnNum;
+}
+
+std::string MaxMinCounter::getName(){
+	return name;
 }
 

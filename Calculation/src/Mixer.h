@@ -2,7 +2,7 @@
 #define MIXER_H
 
 #include <abstractstrategy.h>
-
+#include <sstream>
 
 class Mixer : public AbstractStrategy
 {
@@ -16,6 +16,14 @@ class Mixer : public AbstractStrategy
         virtual std::vector<int> getTirage(int section,int nbNum,int numTirage,int nbTirage);
         virtual void read(int list,int line, int column,int value);
         virtual void calculate();
+		virtual std::string getName(){
+			std::stringstream ss;
+			ss<< left->getName()<<"-"<<right->getName();
+			for(int i=0;i<nbLeft.size();i++){
+				ss<<"-"<<nbLeft[i];
+			}
+			return ss.str();
+		}
     protected:
     private:
         AbstractStrategy *left;
