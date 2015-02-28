@@ -13,7 +13,7 @@ std::vector<AbstractStrategy*> mix(std::vector<AbstractStrategy*>list1,std::vect
 	std::vector<AbstractStrategy*> list;
 	std::cout << " nb tirage :" << nbTirages.size() << std::endl;
 	for(int ii=0;ii<list1.size();ii++)
-		for(int jj=0;jj<list2.size();jj++)
+		for(int jj=ii;jj<list2.size();jj++)
 			for(int i=0;i<nbTirages[0]+1;i++){
 				if(nbTirages.size()>1){
 					for(int j=0;j<nbTirages[1]+1;j++){
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
   
   std::vector<AbstractStrategy*> list2=mix(list,list,nbTirages);
   //std::vector<AbstractStrategy*> list3=mix(list2,list,nbTirages);
-  //std::vector<AbstractStrategy*> list4=mix(list2,list2,nbTirages);
+  std::vector<AbstractStrategy*> list4=mix(list2,list2,nbTirages);
   //std::vector<AbstractStrategy*> list5=mix(list3,list,nbTirages);
   //std::vector<AbstractStrategy*> list6=mix(list3,list2,nbTirages);
   //std::vector<AbstractStrategy*> list7=mix(list4,list4,nbTirages);
@@ -162,7 +162,8 @@ int main(int argc, char **argv)
 		  int column = 0;
 		  char * pch;
 		  pch = strtok(line, ",");
-		  while (pch != NULL&&column<6){
+		  int nb1=nbTirages[0];
+		  while (pch != NULL&&column<nb1+1){
 			  if (column != 0){
 				  int a=atoi(pch);
 				  for (int i=0;i<list.size();i++){
@@ -173,16 +174,20 @@ int main(int argc, char **argv)
 			  column++;
 			  pch = strtok(NULL, ",");
 		  }
-		  while (pch != NULL&&column<7&&column>=6){
-			  if (column != 0){
-				  int a=atoi(pch);
-				  for (int i=0;i<list.size();i++){
-					list[i]->read(1, nbline, column, a);
+		  if(nbTirages.size()>0){
+				int nb2=nbTirages[1];
+		  
+			  while (pch != NULL&&column<nb1+1+nb2&&column>=nb1+1){
+				  if (column != 0){
+					  int a=atoi(pch);
+					  for (int i=0;i<list.size();i++){
+						list[i]->read(1, nbline, column, a);
+					  }
+					  
 				  }
-				  
+				  column++;
+				  pch = strtok(NULL, ",");
 			  }
-			  column++;
-			  pch = strtok(NULL, ",");
 		  }
 	  }
 	  nbline++;
