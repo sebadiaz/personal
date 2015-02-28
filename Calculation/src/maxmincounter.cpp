@@ -29,7 +29,7 @@ MaxMinCounter::MaxMinCounter(std::string nameP,std::vector<int> nbNumbers,bool i
   for (std::vector<int>::iterator it=nbNumbers.begin(); it != nbNumbers.end(); ++it){
       int size=*it;
       std::vector<int> litou;
-      for(int i=0;i<*it;i++)
+      for(int i=0;i<size;i++)
       {
 	litou.push_back(0);
       }
@@ -127,13 +127,18 @@ std::vector<int> MaxMinCounter::getFullValues(int section){
 }
 
 void MaxMinCounter::read(int section,int line, int column,int value){
+
   if(line<minLine||(line>maxLine&&maxLine!=-1)){
-    std::cout<<"line="<<line<< " limit "<< minLine <<" " <<maxLine<<std::endl;
+    
     return;
   }
   if(value <1){
     value=1;
   }
+  if(counters.at(section).size()<value){
+	  for(int i=0;i<value-counters.at(section).size();i++)
+		counters.at(section).push_back(0);
+  }else
   counters.at(section)[value-1]++;
 }
 
