@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 	std::cout << " nb line :" << nbLineToFollow << std::endl;
         break;
       case 'b':
-	  std::cout << " nb boule :" << optarg << " first:"<<pch<< std::endl;
+
 	pch = strtok (optarg,",");
 	std::cout << " nb boule :" << optarg << " first:"<<pch<< std::endl;
 	while(pch !=NULL){
