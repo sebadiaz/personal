@@ -31,9 +31,58 @@ if(!$ligne == $ligne2)  {
 	printf("Nothing todo\n");
 	exit(0);
 }
-printf ("bin/calculator.exe -b ".$ARGV[1].",".$ARGV[2]." -t ".$ARGV[3].",".$ARGV[4]." -f ".$dirname."/".$first_name." -o ".$dirname."/".$first_name.".res -j 5 |\n");
-open SORTIE, "bin/calculator.exe -b ".$ARGV[1].",".$ARGV[2]." -t ".$ARGV[3].",".$ARGV[4]." -f ".$dirname."/".$first_name." -o ".$dirname."/".$first_name.".res -j 5 |";
+printf ("bin/calculator.exe -b ".$ARGV[1].",".$ARGV[2]." -t ".$ARGV[3].",".$ARGV[4]." -f ".$dirname."/".$first_name." -o ".$dirname."/".$first_name.".res -j ".$ARGV[5]." |\n");
+open SORTIE, "bin/calculator.exe -b ".$ARGV[1].",".$ARGV[2]." -t ".$ARGV[3].",".$ARGV[4]." -f ".$dirname."/".$first_name." -o ".$dirname."/".$first_name.".res -j ".$ARGV[5]." |";
 while (my $row = <SORTIE>) {
     print "$row\n";
   }
 close SORTIE;
+	if (open(my $fh, '<', $dirname."/".$first_name)) {
+  while (my $row = <$fh>) {
+  my @values = split(',', $row);
+	my $first=$values[0];
+	my $original=$values[0];
+	$first=~ s/\//-/g;
+    #print $first."\n";
+	if (!-d $dirname."/".$first) {
+		printf("Create directory ".$dirname."/".$first."\n");
+		mkdir($dirname."/".$first)  ; 
+		if (open(my $fh2, '<', $dirname."/".$first_name)) {
+			printf("Create  $dirname/$first/$first_name\n");
+			my $bbook=$dirname."/".$first."/".$first_name;
+			open (MYFILE, '>',$bbook);
+			my $counter=0;
+			my $write=0;
+			
+			while (my $row2 = <$fh2>) {
+				if($counter>0)
+				{
+					if($write>0)
+					{
+						print MYFILE $row2;
+					}
+					else{
+						if($row2 =~ /$original/)
+						{
+							print MYFILE $row2;
+							$write=$write+1;
+						}
+					}
+				}
+				else{
+					printf("h=$row2\n");
+					print MYFILE $row2;
+					$counter=$counter+1;
+				}
+			}
+			close MYFILE;
+			printf ("bin/calculator.exe -b ".$ARGV[1].",".$ARGV[2]." -t ".$ARGV[3].",".$ARGV[4]." -f ".$bbook." -o ".$bbook.".res -j ".$ARGV[5]." |\n");
+			open SORTIE, "bin/calculator.exe -b ".$ARGV[1].",".$ARGV[2]." -t ".$ARGV[3].",".$ARGV[4]." -f ".$bbook." -o ".$bbook.".res -j ".$ARGV[5]." |";
+			while (my $row = <SORTIE>) {
+				#print "$row\n";
+			  }
+			close SORTIE;
+		}
+	}
+  }
+}
