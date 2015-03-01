@@ -6,14 +6,19 @@
 #include <iostream>
 #include <ostream>
 #include<list>
+#include<set>
 #include <string.h>
 #include <unistd.h>
 
 std::vector<AbstractStrategy*> mix(std::vector<AbstractStrategy*>list1,std::vector<AbstractStrategy*>list2,std::vector<int> nbTirages){
 	std::vector<AbstractStrategy*> list;
 	std::cout << " nb tirage :" << nbTirages.size() << std::endl;
+	std::set<std::string> managed;
 	for(int ii=0;ii<list1.size();ii++)
-		for(int jj=ii;jj<list2.size();jj++)
+		for(int jj=0;jj<list2.size();jj++){
+			if(list1[ii]==list2[jj]||managed.find(list1[ii]->getName()+"##"+list2[jj]->getName())!=managed.end()||managed.find(list2[jj]->getName()+"##"+list1[ii]->getName())!=managed.end()){
+				continue;
+			}
 			for(int i=0;i<nbTirages[0]+1;i++){
 				if(nbTirages.size()>1){
 					for(int j=0;j<nbTirages[1]+1;j++){
@@ -21,13 +26,11 @@ std::vector<AbstractStrategy*> mix(std::vector<AbstractStrategy*>list1,std::vect
 						lisy.push_back(i);
 				
 						lisy.push_back(j);
-						if(list1[ii]!=list2[jj]){
-							Mixer *maxii4=new Mixer(list1[ii],list2[jj],lisy);
-							list.push_back(maxii4);
-						}
+						Mixer *maxii4=new Mixer(list1[ii],list2[jj],lisy);
+						list.push_back(maxii4);
+						
 					}
-				}else
-				if(list1[ii]!=list2[jj]){
+				}else{
 					std::vector<int> lisy;
 					lisy.push_back(i);
 				
@@ -36,6 +39,8 @@ std::vector<AbstractStrategy*> mix(std::vector<AbstractStrategy*>list1,std::vect
 				}
 				
 			}
+			managed.insert(list1[ii]->getName()+"##"+list2[jj]->getName());
+		}
 	return list;
 }
 
