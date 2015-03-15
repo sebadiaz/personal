@@ -53,7 +53,7 @@ close SORTIE;
 			open (MYFILE, '>',$bbook);
 			my $counter=0;
 			my $write=0;
-			
+			my $nextLine=0;
 			while (my $row2 = <$fh2>) {
 				if($counter>0)
 				{
@@ -62,11 +62,18 @@ close SORTIE;
 						print MYFILE $row2;
 					}
 					else{
-						if($row2 =~ /$original/)
-						{
+						if($nextLine==1){
 							print MYFILE $row2;
 							$write=$write+1;
+							$nextLine+0;
 						}
+						if($row2 =~ /$original/)
+						{
+							$nextLine=1;
+							
+						}
+						
+						
 					}
 				}
 				else{
